@@ -16,32 +16,19 @@ import java.util.List;
 public class CommentsController {
     @Autowired
     CommentService commentService;
-    @PostMapping(
-        consumes = {
-                MediaType.APPLICATION_JSON_VALUE ,
-                MediaType.APPLICATION_XML_VALUE},
-        produces= {
-                MediaType.APPLICATION_JSON_VALUE ,
-                MediaType.APPLICATION_XML_VALUE
-        })
+    @PostMapping()
 public ResponseEntity<CommentDTO> createComment(
-        @Valid @RequestBody CommentDTO commentDTO)
+       @RequestBody CommentDTO commentDTO)
         throws Exception {
 
     commentDTO.setCreatedDate(new Date());
-    commentDTO.setCreatedBy("vidisha.pal@myemail.com");
+    commentDTO.setCreatedBy("zanadev@gmail.com");
 
     commentService.saveComment(commentDTO);
     return new ResponseEntity<>(commentDTO, HttpStatus.CREATED);
 }
     @GetMapping(
-            consumes = {
-                    MediaType.APPLICATION_JSON_VALUE ,
-                    MediaType.APPLICATION_XML_VALUE},
-            produces= {
-                    MediaType.APPLICATION_JSON_VALUE ,
-                    MediaType.APPLICATION_XML_VALUE
-            })
+            )
     public ResponseEntity<List<CommentDTO>> getComments()
             throws Exception {
 
